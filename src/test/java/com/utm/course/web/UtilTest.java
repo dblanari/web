@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Test;
 
 public class UtilTest {
 
-
   @Test
   public void testSumPositive() {
     List<Integer> list = Arrays.asList(1, 2, 3);
     final Integer sum = Util.sum(list);
-    assertThat(sum).isEqualTo(5);
+    assertThat(sum).isEqualTo(6);
   }
 }
