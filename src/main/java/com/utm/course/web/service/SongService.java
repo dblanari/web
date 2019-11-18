@@ -1,18 +1,18 @@
 package com.utm.course.web.service;
 
 import com.utm.course.web.model.Song;
-import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
+import com.utm.course.web.repository.SongRepository;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class SongService {
 
+    @Autowired
+    private SongRepository songRepository;
+
     public List<Song> findAll() {
-        return Arrays.asList(
-                new Song("song1", 3),
-                new Song("song2", 5)
-        );
+        return songRepository.findAll();
     }
 }
