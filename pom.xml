@@ -36,6 +36,23 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!--    FE library-->
+    <dependency>
+      <artifactId>jquery</artifactId>
+      <groupId>org.webjars</groupId>
+      <version>2.1.4</version>
+    </dependency>
+    <dependency>
+      <artifactId>datatables</artifactId>
+      <groupId>org.webjars</groupId>
+      <version>1.10.20</version>
+    </dependency>
+    <dependency>
+      <artifactId>bootstrap</artifactId>
+      <groupId>org.webjars</groupId>
+      <version>4.3.1</version>
+    </dependency>
+
     <dependency>
       <artifactId>spring-boot-starter-test</artifactId>
       <exclusions>
