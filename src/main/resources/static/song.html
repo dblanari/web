@@ -1,0 +1,73 @@
+<html>
+<head>
+  <script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+  <script src="/webjars/datatables/1.10.20/js/jquery.dataTables.js"></script>
+  <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <title>Song Demo</title>
+  <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/webjars/datatables/1.10.20/css/jquery.dataTables.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="nameInput">Song name</label>
+      <input class="form-control" id="nameInput" placeholder="Song name" type="text">
+    </div>
+    <div class="form-group">
+      <label for="durationInput">Song duration</label>
+      <input class="form-control" id="durationInput" placeholder="Song duration" type="text">
+    </div>
+    <button class="btn btn-primary" id="addRow" type="button">Add</button>
+  </form>
+
+  <table class="display" id="songs" style="width:100%">
+    <thead>
+    <tr>
+      <th>name</th>
+      <th>duration</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th>name</th>
+      <th>duration</th>
+    </tr>
+    </tfoot>
+  </table>
+
+  <script type="application/javascript">
+    $(document).ready(function () {
+      var table = $('#songs').DataTable({
+        ajax: {
+          url: '/songs',
+          dataSrc: '_embedded.songs',
+        },
+        columns: [
+          {data: "name"},
+          {data: "duration"}
+        ]
+      });
+
+      $('#addRow').on('click', function () {
+        var name = $('#nameInput').val();
+        var duration = $('#durationInput').val();
+
+        var row = {"name": name, "duration": duration};
+
+        $.ajax({
+          type: "POST",
+          url: "/songs",
+          data: JSON.stringify(row),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json"
+        });
+
+        table.row.add(row).draw(false);
+      });
+
+    });
+  </script>
+</div>
+</body>
+</html>

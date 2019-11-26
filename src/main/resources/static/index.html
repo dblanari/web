@@ -1,73 +1,52 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
-  <script src="/webjars/datatables/1.10.20/js/jquery.dataTables.js"></script>
-  <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <title>Song Demo</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <meta content="" name="description">
+  <meta content="" name="author">
+
+  <title>Cover Template for Bootstrap</title>
+
+  <!-- Bootstrap core CSS -->
   <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="/webjars/datatables/1.10.20/css/jquery.dataTables.css" rel="stylesheet"/>
+
+  <!-- Custom styles for this template -->
+  <link href="public/css/cover.css" rel="stylesheet">
 </head>
-<body>
-<div class="container">
-  <form>
-    <div class="form-group">
-      <label for="nameInput">Song name</label>
-      <input class="form-control" id="nameInput" placeholder="Song name" type="text">
+
+<body class="text-center">
+
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">Cover</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/song.html">Song</a>
+        <a class="nav-link" href="/api/song">Song api</a>
+      </nav>
     </div>
-    <div class="form-group">
-      <label for="durationInput">Song duration</label>
-      <input class="form-control" id="durationInput" placeholder="Song duration" type="text">
+  </header>
+
+  <main class="inner cover" role="main">
+    <h1 class="cover-heading">Cover your page.</h1>
+    <p class="lead">Cover is a one-page template for building simple and beautiful home pages.
+      Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+    <p class="lead">
+      <a class="btn btn-lg btn-secondary" href="#">Learn more</a>
+    </p>
+  </main>
+
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a
+          href="http://localhost">@localhost</a>.</p>
     </div>
-    <button class="btn btn-primary" id="addRow" type="button">Add</button>
-  </form>
-
-  <table class="display" id="songs" style="width:100%">
-    <thead>
-    <tr>
-      <th>name</th>
-      <th>duration</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <tr>
-      <th>name</th>
-      <th>duration</th>
-    </tr>
-    </tfoot>
-  </table>
-
-  <script type="application/javascript">
-    $(document).ready(function () {
-      var table = $('#songs').DataTable({
-        ajax: {
-          url: '/songs',
-          dataSrc: '_embedded.songs',
-        },
-        columns: [
-          {data: "name"},
-          {data: "duration"}
-        ]
-      });
-
-      $('#addRow').on('click', function () {
-        var name = $('#nameInput').val();
-        var duration = $('#durationInput').val();
-
-        var row = {"name": name, "duration": duration};
-
-        $.ajax({
-          type: "POST",
-          url: "/songs",
-          data: JSON.stringify(row),
-          contentType: "application/json; charset=utf-8",
-          dataType: "json"
-        });
-
-        table.row.add(row).draw(false);
-      });
-
-    });
-  </script>
+  </footer>
 </div>
+
+<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>
