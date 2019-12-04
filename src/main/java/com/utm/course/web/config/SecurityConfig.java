@@ -15,7 +15,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/", "/public/**", "/webjars/**").permitAll()
         .anyRequest().authenticated()
         .and()
-        .oauth2Login();
+        .oauth2Login()
+        .and().csrf().disable();
   }
 
 }
