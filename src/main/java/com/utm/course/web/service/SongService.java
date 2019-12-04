@@ -15,4 +15,9 @@ public class SongService {
     public List<Song> findAll() {
         return songRepository.findAll();
     }
+
+
+    public int countByName(String name) {
+        return songRepository.findByName(name).size();
+    }
 }
